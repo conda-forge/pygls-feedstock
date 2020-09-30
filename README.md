@@ -7,7 +7,7 @@ Package license: Apache-2.0
 
 Feedstock license: BSD-3-Clause
 
-Summary: a pythonic generic language server
+Summary: a pythonic generic language server (pronounced like "pie glass").
 
 pygls (pronounced like "pie glass") is a pythonic generic implementation of
 the Language Server Protocol for use as a foundation for writing language
