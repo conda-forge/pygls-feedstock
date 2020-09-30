@@ -1,18 +1,22 @@
 {% set name = "pygls" %}
-{% set version = "0.9.0" %}
+{% set version = "0.9.1" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 0be0dce93745cba445b7a2568910ca7e45a3865347f01860eff9ed3e37e64e7b
+  - folder: dist
+    url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+    sha256: c21c942415457315f316c0b6c19d4c743fd2974d457e02a85472154c8f1b6399
+  - folder: src
+    url: https://github.com/openlawlibrary/{{ name }}/archive/v{{ version }}.tar.gz 
+    sha256: 5a1bbed1ed8102bdab37dafa29e71038c91d343cf914c2fd6b3a00f41e377d9d
 
 build:
   noarch: python
   number: 0
-  script: {{ PYTHON }} -m pip install . -vv
+  script: cd dist && {{ PYTHON }} -m pip install . -vv --no-deps
 
 requirements:
   host:
@@ -23,22 +27,26 @@ requirements:
 
 test:
   source_files:
-    - tests
+    - src/tests
   requires:
     - mock
+    - pip
     - pytest
     - pytest-asyncio
   imports:
     - pygls
   commands:
-    - python -m pytest
+    - python -m pip check
+    - cd src && python -m pytest
 
 about:
   home: https://pygls.readthedocs.io
   license: Apache-2.0
   license_family: APACHE
-  license_file: LICENSE.txt
-  summary: a pythonic generic language server
+  license_file: 
+    - dist/LICENSE.txt
+    - dist/ThirdPartyNotices.txt
+  summary: a pythonic generic language server (pronounced like "pie glass").
   description: |
     pygls (pronounced like "pie glass") is a pythonic generic implementation of
     the Language Server Protocol for use as a foundation for writing language
