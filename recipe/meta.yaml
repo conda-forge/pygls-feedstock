@@ -11,7 +11,7 @@ source:
     sha256: c21c942415457315f316c0b6c19d4c743fd2974d457e02a85472154c8f1b6399
   - folder: src
     url: https://github.com/openlawlibrary/{{ name }}/archive/v{{ version }}.tar.gz 
-    sha256: 78b27edd4e2f6e5bed84a6c2119e0d19e56824bd1839e293069d763956be65e0
+    sha256: 5a1bbed1ed8102bdab37dafa29e71038c91d343cf914c2fd6b3a00f41e377d9d
 
 build:
   noarch: python
