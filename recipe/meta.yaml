@@ -1,5 +1,5 @@
 {% set name = "pygls" %}
-{% set version = "0.9.1" %}
+{% set version = "0.10.0" %}
 
 package:
   name: {{ name|lower }}
@@ -8,10 +8,10 @@ package:
 source:
   - folder: dist
     url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-    sha256: c21c942415457315f316c0b6c19d4c743fd2974d457e02a85472154c8f1b6399
+    sha256: 234d70d551994797f6166bfe73289acdff52de872b1f4d50ebd2234e370ea2e0
   - folder: src
-    url: https://github.com/openlawlibrary/{{ name }}/archive/v{{ version }}.tar.gz 
-    sha256: 5a1bbed1ed8102bdab37dafa29e71038c91d343cf914c2fd6b3a00f41e377d9d
+    url: https://github.com/openlawlibrary/{{ name }}/archive/v{{ version }}.tar.gz
+    sha256: 2f0bb84a30b044f7d74ef8ade6e318185d1ffc078711a8c0d36b6bc1731bb815
 
 build:
   noarch: python
@@ -20,10 +20,13 @@ build:
 
 requirements:
   host:
-    - python >=3.5
+    - python >=3.6
     - pip
   run:
-    - python >=3.5
+    - psutil >=5
+    - pydantic >=1.7,<1.9
+    - python >=3.6
+    - typeguard >=2.10.0,<3
 
 test:
   source_files:
@@ -43,7 +46,7 @@ about:
   home: https://pygls.readthedocs.io
   license: Apache-2.0
   license_family: APACHE
-  license_file: 
+  license_file:
     - dist/LICENSE.txt
     - dist/ThirdPartyNotices.txt
   summary: a pythonic generic language server (pronounced like "pie glass").
