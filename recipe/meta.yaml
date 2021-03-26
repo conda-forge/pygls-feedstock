@@ -42,7 +42,7 @@ test:
     - pygls
   commands:
     - python -m pip check
-    - cd src && python -m pytest -vv --timeout 300 --cov pygls --cov-report term-missing:skip-covered --cov-branch --durations 5
+    - cd src && python -m pytest -vv --timeout 30 --cov pygls --cov-report term-missing:skip-covered --cov-branch --durations 10 -k "not tcp_connection_lost"
 
 about:
   home: https://pygls.readthedocs.io
