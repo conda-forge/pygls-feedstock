@@ -36,11 +36,13 @@ test:
     - pip
     - pytest
     - pytest-asyncio
+    - pytest-cov
+    - pytest-timeout
   imports:
     - pygls
   commands:
     - python -m pip check
-    - cd src && python -m pytest
+    - cd src && python -m pytest -vv --timeout 300 --cov pygls --cov-report term-missing:skip-covered --cov-branch --durations 5
 
 about:
   home: https://pygls.readthedocs.io
