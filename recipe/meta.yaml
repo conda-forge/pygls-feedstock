@@ -1,5 +1,5 @@
 {% set name = "pygls" %}
-{% set version = "0.10.1" %}
+{% set version = "0.10.2" %}
 
 package:
   name: {{ name|lower }}
@@ -8,10 +8,10 @@ package:
 source:
   - folder: dist
     url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-    sha256: ab0cd3273e265e792b926ad621ab10199a3bd0e7b8786233e9eda54cc1071e3a
+    sha256: 5b50a1931613f36af446b16c644a85b52ceb2beceb09bddd05f9ce054f13e9ab
   - folder: src
     url: https://github.com/openlawlibrary/{{ name }}/archive/v{{ version }}.tar.gz
-    sha256: 945ba6e40096ba8a8dda1c6f01b5a05f0aa5461a10777e9fccd6a669846520e4
+    sha256: efed13eb7fed2053913b73b73f88165e81359fe5b4f7f4741077836bd7ad71ee
 
 build:
   noarch: python
@@ -36,11 +36,15 @@ test:
     - pip
     - pytest
     - pytest-asyncio
+    - pytest-cov
+    - pytest-timeout
   imports:
     - pygls
   commands:
     - python -m pip check
-    - cd src && python -m pytest
+    # TODO: remove skip https://github.com/openlawlibrary/pygls/issues/165
+    - cd src/tests
+    - python -m pytest -vv --timeout 30 --durations 10 -k "not tcp_connection_lost" --cov pygls --cov-branch --cov-fail-under 86 --cov-report term-missing:skip-covered --no-cov-on-fail
 
 about:
   home: https://pygls.readthedocs.io
