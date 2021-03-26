@@ -42,7 +42,9 @@ test:
     - pygls
   commands:
     - python -m pip check
-    - cd src && python -m pytest -vv --timeout 30 --cov pygls --cov-report term-missing:skip-covered --cov-branch --durations 10 -k "not tcp_connection_lost"
+    # TODO: remove skip https://github.com/openlawlibrary/pygls/issues/165
+    - cd src/tests
+    - python -m pytest -vv --timeout 30 --durations 10 -k "not tcp_connection_lost" --cov pygls --cov-branch --cov-fail-under 86 --cov-report term-missing:skip-covered --no-cov-on-fail
 
 about:
   home: https://pygls.readthedocs.io
