@@ -1,5 +1,5 @@
 {% set name = "pygls" %}
-{% set version = "0.10.2" %}
+{% set version = "0.10.3" %}
 
 package:
   name: {{ name|lower }}
@@ -8,10 +8,10 @@ package:
 source:
   - folder: dist
     url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-    sha256: 5b50a1931613f36af446b16c644a85b52ceb2beceb09bddd05f9ce054f13e9ab
+    sha256: 522c1068dd38c4945925ca742daba6aff5621168e0e5ddd954813e8b957ca831
   - folder: src
     url: https://github.com/openlawlibrary/{{ name }}/archive/v{{ version }}.tar.gz
-    sha256: efed13eb7fed2053913b73b73f88165e81359fe5b4f7f4741077836bd7ad71ee
+    sha256: b3262f6abf021eb43fe590aa39aba481d45be4f15d528d51b0866b200cdae173
 
 build:
   noarch: python
@@ -23,7 +23,6 @@ requirements:
     - python >=3.6
     - pip
   run:
-    - psutil >=5
     - pydantic >=1.7,<1.9
     - python >=3.6
     - typeguard >=2.10.0,<3
