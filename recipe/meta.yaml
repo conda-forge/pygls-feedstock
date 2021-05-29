@@ -2,7 +2,7 @@
 {% set version = "0.10.3" %}
 
 package:
-  name: {{ name|lower }}
+  name: pygls
   version: {{ version }}
 
 source:
@@ -15,13 +15,15 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: cd dist && {{ PYTHON }} -m pip install . -vv --no-deps
 
 requirements:
   host:
-    - python >=3.6
     - pip
+    - python >=3.6
+    - setuptools-scm >=3.4.3
+    - toml
   run:
     - pydantic >=1.7,<1.9
     - python >=3.6
@@ -41,6 +43,8 @@ test:
     - pygls
   commands:
     - python -m pip check
+    - python -m pip list
+    - python -m pip list | grep -E '{{ name }}\s+{{ version }}'  # [unix]
     # TODO: remove skip https://github.com/openlawlibrary/pygls/issues/165
     - cd src/tests
     - python -m pytest -vv --timeout 30 --durations 10 -k "not tcp_connection_lost" --cov pygls --cov-branch --cov-fail-under 86 --cov-report term-missing:skip-covered --no-cov-on-fail
