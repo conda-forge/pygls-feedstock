@@ -1,5 +1,5 @@
 {% set name = "pygls" %}
-{% set version = "0.10.3" %}
+{% set version = "0.11.0" %}
 
 package:
   name: pygls
@@ -8,20 +8,21 @@ package:
 source:
   - folder: dist
     url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-    sha256: 522c1068dd38c4945925ca742daba6aff5621168e0e5ddd954813e8b957ca831
+    sha256: 5ce1fb7c11e2fc3d017c9e7e03dd0c8239d4ae80a7ed6207006a64662f270a03
   - folder: src
     url: https://github.com/openlawlibrary/{{ name }}/archive/v{{ version }}.tar.gz
-    sha256: b3262f6abf021eb43fe590aa39aba481d45be4f15d528d51b0866b200cdae173
+    sha256: 5f92712374aa068fcad945d01abbca92ee6d574c33a3ba9e3ec6abef536f28c4
 
 build:
   noarch: python
-  number: 1
+  number: 0
   script: cd dist && {{ PYTHON }} -m pip install . -vv --no-deps
 
 requirements:
   host:
     - pip
     - python >=3.6
+    - setuptools >=44
     - setuptools-scm >=3.4.3
     - toml
   run:
