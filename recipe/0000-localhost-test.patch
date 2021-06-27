@@ -1,5 +1,5 @@
 --- tests/test_server_connection.py	2021-06-27 17:06:16.383282235 -0400
-+++ tests/test_server_connection.new.py	2021-06-27 17:09:44.768325692 -0400
++++ tests/test_server_connection.py	2021-06-27 17:09:44.768325692 -0400
 @@ -18,7 +18,7 @@
      server.lsp.connection_lost = Mock()
  
