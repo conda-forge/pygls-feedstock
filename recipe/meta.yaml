@@ -12,10 +12,12 @@ source:
   - folder: src
     url: https://github.com/openlawlibrary/{{ name }}/archive/v{{ version }}.tar.gz
     sha256: 66787f1ab6cf8927559c0082b6d7415b2217dd6f14e39c4da4c339f7a74d3f0b
+    patches:
+      - 0000-localhost-test.patch
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: cd dist && {{ PYTHON }} -m pip install . -vv --no-deps
 
 requirements:
@@ -48,7 +50,7 @@ test:
     - python -m pip list | grep -E '{{ name }}\s+{{ version }}'  # [unix]
     # TODO: remove skip https://github.com/openlawlibrary/pygls/issues/165
     - cd src/tests
-    - python -m pytest -vv --timeout 30 --durations 10 -k "not tcp_connection_lost" --cov pygls --cov-branch --cov-fail-under 86 --cov-report term-missing:skip-covered --no-cov-on-fail
+    - python -m pytest -vv --timeout 30 --durations 10 --cov pygls --cov-branch --cov-fail-under 86 --cov-report term-missing:skip-covered --no-cov-on-fail
 
 about:
   home: https://pygls.readthedocs.io
