@@ -1,5 +1,5 @@
 {% set name = "pygls" %}
-{% set version = "0.11.1" %}
+{% set version = "0.11.2" %}
 
 package:
   name: pygls
@@ -8,10 +8,10 @@ package:
 source:
   - folder: dist
     url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-    sha256: cb30ccf1eee14760ce1b7167a9d39df9e72368ec7a61accdd6bf0b9c73ea0319
+    sha256: 1ade26fc9cf0d7c0700fa5430e8dc8411b1108d1eb21565adbe480b64f721a84
   - folder: src
     url: https://github.com/openlawlibrary/{{ name }}/archive/v{{ version }}.tar.gz
-    sha256: 66787f1ab6cf8927559c0082b6d7415b2217dd6f14e39c4da4c339f7a74d3f0b
+    sha256: 114e2a4085036b158ff1709deb6da42d281f8d0ce840a3d20baaee20ef54656b
 
 build:
   noarch: python
