@@ -39,7 +39,6 @@ test:
     - pytest
     - pytest-asyncio
     - pytest-cov
-    - pytest-timeout
   imports:
     - pygls
   commands:
@@ -48,7 +47,7 @@ test:
     - python -m pip list | grep -E '{{ name }}\s+{{ version }}'  # [unix]
     # TODO: remove skip https://github.com/openlawlibrary/pygls/issues/165
     - cd src/tests
-    - python -m pytest -vv --timeout 30 --durations 10 -k "not tcp_connection_lost" --cov pygls --cov-branch --cov-fail-under 86 --cov-report term-missing:skip-covered --no-cov-on-fail
+    - python -m pytest -vv --durations 10 --cov pygls --cov-branch --cov-fail-under 86 --cov-report term-missing:skip-covered --no-cov-on-fail
 
 about:
   home: https://pygls.readthedocs.io
