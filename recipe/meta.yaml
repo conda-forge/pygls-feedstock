@@ -41,7 +41,7 @@ test:
     - python -m pip list
     - python -m pip list | grep -E 'pygls\s+{{ version }}'  # [unix]
     # TODO: remove skip https://github.com/openlawlibrary/pygls/issues/165
-    - python -m pytest tests -vv --durations 10 --cov pygls --cov-branch --cov-fail-under 86 --cov-report term-missing:skip-covered --no-cov-on-fail
+    - python -m pytest tests -vv --cov=pygls --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=89
 
 about:
   home: https://pygls.readthedocs.io
