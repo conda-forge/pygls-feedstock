@@ -29,6 +29,7 @@ test:
   source_files:
     - tests
   requires:
+    - m2-grep  # [win]
     - mock
     - pip
     - pytest
@@ -37,11 +38,10 @@ test:
   imports:
     - pygls
   commands:
-    - python -m pip check
-    - python -m pip list
-    - python -m pip list | grep -E 'pygls\s+{{ version }}'  # [unix]
-    # TODO: remove skip https://github.com/openlawlibrary/pygls/issues/165
-    - python -m pytest tests -vv --cov=pygls --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=89
+    - pip check
+    - pip list
+    - pip list | grep -iE 'pygls\s+{{ version.replace("\\", "\\\\") }}$'
+    - pytest tests -vv --cov=pygls --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=89
 
 about:
   home: https://pygls.readthedocs.io
