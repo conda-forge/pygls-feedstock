@@ -1,39 +1,35 @@
-{% set name = "pygls" %}
-{% set version = "0.11.3" %}
+{% set version = "0.12" %}
 
 package:
   name: pygls
   version: {{ version }}
 
 source:
-  - folder: dist
-    url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-    sha256: 4d86fc854e6d6613cd42bf7511e9c6aac947fc8d62ff973a705570b036d969f2
-  - folder: src
-    url: https://github.com/openlawlibrary/{{ name }}/archive/v{{ version }}.tar.gz
-    sha256: cbd2f6484593429e5edf61d307f05fd76bc400c5da366d5f9c36b0ab34a4b200
+  - url: https://pypi.io/packages/source/p/pygls/pygls-{{ version }}.tar.gz
+    sha256: 452586db4e153f67d3e0505ceb98234e2cf1425c882f089fd458271a721b7809
 
 build:
   noarch: python
   number: 0
-  script: cd dist && {{ PYTHON }} -m pip install . -vv --no-deps
+  script: "{{ PYTHON }} -m pip install . -vv --no-deps"
 
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python >=3.7
     - setuptools >=44
     - setuptools-scm >=3.4.3
     - toml
   run:
-    - pydantic >=1.7,<1.9
-    - python >=3.6
+    - pydantic >=1.9.1,<1.10
+    - python >=3.7
     - typeguard >=2.10.0,<3
 
 test:
   source_files:
-    - src/tests
+    - tests
   requires:
+    - m2-grep  # [win]
     - mock
     - pip
     - pytest
@@ -42,20 +38,18 @@ test:
   imports:
     - pygls
   commands:
-    - python -m pip check
-    - python -m pip list
-    - python -m pip list | grep -E '{{ name }}\s+{{ version }}'  # [unix]
-    # TODO: remove skip https://github.com/openlawlibrary/pygls/issues/165
-    - cd src/tests
-    - python -m pytest -vv --durations 10 --cov pygls --cov-branch --cov-fail-under 86 --cov-report term-missing:skip-covered --no-cov-on-fail
+    - pip check
+    - pip list
+    - pip list | grep -iE 'pygls\s+{{ version.replace("\\", "\\\\") }}$'
+    - pytest tests -vv --cov=pygls --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=89
 
 about:
   home: https://pygls.readthedocs.io
   license: Apache-2.0
   license_family: APACHE
   license_file:
-    - dist/LICENSE.txt
-    - dist/ThirdPartyNotices.txt
+    - LICENSE.txt
+    - ThirdPartyNotices.txt
   summary: a pythonic generic language server (pronounced like "pie glass").
   description: |
     pygls (pronounced like "pie glass") is a pythonic generic implementation of
