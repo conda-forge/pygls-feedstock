@@ -1,4 +1,4 @@
-{% set version = "0.12" %}
+{% set version = "0.12.1" %}
 
 package:
   name: pygls
@@ -6,12 +6,12 @@ package:
 
 source:
   - url: https://pypi.io/packages/source/p/pygls/pygls-{{ version }}.tar.gz
-    sha256: 452586db4e153f67d3e0505ceb98234e2cf1425c882f089fd458271a721b7809
+    sha256: 3b9da223fd6e7624aed047dec2cbb6ab471c1441d5b48369daad012594c11610
 
 build:
   noarch: python
   number: 0
-  script: "{{ PYTHON }} -m pip install . -vv --no-deps"
+  script: {{ PYTHON }} -m pip install . -vv --no-deps
 
 requirements:
   host:
