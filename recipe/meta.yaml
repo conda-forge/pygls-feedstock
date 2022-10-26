@@ -5,8 +5,8 @@ package:
   version: {{ version }}
 
 source:
-  - url: https://pypi.io/packages/source/p/pygls/pygls-{{ version }}.tar.gz
-    sha256: 63b859411307ed6f99fb9dd0e71be507a17ae9b3de5c5d07c497f5bddadcc46a
+  url: https://pypi.io/packages/source/p/pygls/pygls-{{ version }}.tar.gz
+  sha256: 63b859411307ed6f99fb9dd0e71be507a17ae9b3de5c5d07c497f5bddadcc46a
 
 build:
   noarch: python
@@ -16,13 +16,22 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.7
+    {% if pygls_py == "gte311" %}
+    - python >=3.11
+    {% else %}
+    - python >=3.7,<3.11
+    {% endif %}
     - setuptools >=44
     - setuptools-scm >=3.4.3
     - toml
   run:
+    {% if pygls_py == "gte311" %}
+    - python >=3.11
+    - pydantic >=1.10.2
+    {% else %}
+    - python >=3.7,<3.11
     - pydantic >=1.9.1,<1.10
-    - python >=3.7
+    {% endif %}
     - typeguard >=2.10.0,<3
 
 test:
@@ -41,7 +50,7 @@ test:
     - pip check
     - pip list
     - pip list | grep -iE 'pygls\s+{{ version.replace("\\", "\\\\") }}$'
-    - pytest tests -vv --cov=pygls --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=89
+    - pytest tests -vv --cov=pygls --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=87
 
 about:
   home: https://pygls.readthedocs.io
