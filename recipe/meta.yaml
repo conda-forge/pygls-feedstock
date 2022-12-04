@@ -16,22 +16,13 @@ build:
 requirements:
   host:
     - pip
-    {% if pygls_py == "gte311" %}
-    - python >=3.11
-    {% else %}
-    - python >=3.7,<3.11
-    {% endif %}
+    - python >=3.7
     - setuptools >=44
     - setuptools-scm >=3.4.3
     - toml
   run:
-    {% if pygls_py == "gte311" %}
-    - python >=3.11
-    - pydantic >=1.10.2
-    {% else %}
-    - python >=3.7,<3.11
-    - pydantic >=1.9.1,<1.10
-    {% endif %}
+    - python >=3.7
+    - lsprotocol
     - typeguard >=2.10.0,<3
 
 test:
