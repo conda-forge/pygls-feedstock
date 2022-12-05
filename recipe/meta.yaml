@@ -1,4 +1,4 @@
-{% set version = "0.13.1" %}
+{% set version = "1.0.0" %}
 
 package:
   name: pygls
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/p/pygls/pygls-{{ version }}.tar.gz
-  sha256: b2d3f5cbf3d0e5dfa88b9150a371e3a0e619d7f25b77113aba4ca746c8385a66
+  sha256: c2a1c22e30028f7ca9d3f0a04da8eef29f0f1701bdbd97d8614d8e1e6711f336
 
 build:
   noarch: python
@@ -16,22 +16,13 @@ build:
 requirements:
   host:
     - pip
-    {% if pygls_py == "gte311" %}
-    - python >=3.11
-    {% else %}
-    - python >=3.7,<3.11
-    {% endif %}
+    - python >=3.7
     - setuptools >=44
     - setuptools-scm >=3.4.3
     - toml
   run:
-    {% if pygls_py == "gte311" %}
-    - python >=3.11
-    - pydantic >=1.10.2
-    {% else %}
-    - python >=3.7,<3.11
-    - pydantic >=1.9.1,<1.10
-    {% endif %}
+    - python >=3.7
+    - lsprotocol
     - typeguard >=2.10.0,<3
 
 test:
@@ -50,7 +41,7 @@ test:
     - pip check
     - pip list
     - pip list | grep -iE 'pygls\s+{{ version.replace("\\", "\\\\") }}$'
-    - pytest tests -vv --cov=pygls --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=87
+    - pytest tests -vv --cov=pygls --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=82
 
 about:
   home: https://pygls.readthedocs.io
