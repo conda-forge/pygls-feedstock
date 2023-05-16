@@ -1,11 +1,11 @@
-About pygls
-===========
+About pygls-feedstock
+=====================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pygls-feedstock/blob/main/LICENSE.txt)
 
 Home: https://pygls.readthedocs.io
 
 Package license: Apache-2.0
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pygls-feedstock/blob/main/LICENSE.txt)
 
 Summary: a pythonic generic language server (pronounced like "pie glass").
 
