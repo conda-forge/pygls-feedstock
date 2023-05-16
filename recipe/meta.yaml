@@ -1,4 +1,4 @@
-{% set version = "1.0.1" %}
+{% set version = "1.0.2" %}
 
 package:
   name: pygls
@@ -6,12 +6,12 @@ package:
 
 source:
   url: https://pypi.io/packages/source/p/pygls/pygls-{{ version }}.tar.gz
-  sha256: f3ee98ddbb4690eb5c755bc32ba7e129607f14cbd313575f33d0cea443b78cb2
+  sha256: 888ed63d1f650b4fc64d603d73d37545386ec533c0caac921aed80f80ea946a4
 
 build:
   noarch: python
   number: 0
-  script: {{ PYTHON }} -m pip install . -vv --no-deps
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
@@ -23,7 +23,7 @@ requirements:
   run:
     - python >=3.7
     - lsprotocol
-    - typeguard >=2.10.0,<3
+    - typeguard >=3,<4
 
 test:
   source_files:
