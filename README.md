@@ -38,6 +38,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-pygls-green.svg)](https://anaconda.org/conda-forge/pygls) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/pygls.svg)](https://anaconda.org/conda-forge/pygls) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pygls.svg)](https://anaconda.org/conda-forge/pygls) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/pygls.svg)](https://anaconda.org/conda-forge/pygls) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-pygls--with--ws-green.svg)](https://anaconda.org/conda-forge/pygls-with-ws) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/pygls-with-ws.svg)](https://anaconda.org/conda-forge/pygls-with-ws) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pygls-with-ws.svg)](https://anaconda.org/conda-forge/pygls-with-ws) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/pygls-with-ws.svg)](https://anaconda.org/conda-forge/pygls-with-ws) |
 
 Installing pygls
 ================
@@ -49,16 +50,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `pygls` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `pygls, pygls-with-ws` can be installed with `conda`:
 
 ```
-conda install pygls
+conda install pygls pygls-with-ws
 ```
 
 or with `mamba`:
 
 ```
-mamba install pygls
+mamba install pygls pygls-with-ws
 ```
 
 It is possible to list all of the versions of `pygls` available on your platform with `conda`:
