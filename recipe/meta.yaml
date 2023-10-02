@@ -1,4 +1,4 @@
-{% set version = "1.0.2" %}
+{% set version = "1.1.0" %}
 
 package:
   name: pygls
@@ -6,42 +6,69 @@ package:
 
 source:
   url: https://pypi.io/packages/source/p/pygls/pygls-{{ version }}.tar.gz
-  sha256: 888ed63d1f650b4fc64d603d73d37545386ec533c0caac921aed80f80ea946a4
+  sha256: eb19b818039d3d705ec8adbcdf5809a93af925f30cd7a3f3b7573479079ba00e
+
+requirements:
+  host:
+    - python >=3.7.9
+  run:
+    - python >=3.7.9
 
 build:
   noarch: python
   number: 0
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
-requirements:
-  host:
-    - pip
-    - python >=3.7
-    - setuptools >=44
-    - setuptools-scm >=3.4.3
-    - toml
-  run:
-    - python >=3.7
-    - lsprotocol
-    - typeguard >=3,<4
+outputs:
+  - name: pygls
+    build:
+      noarch: python
+      script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+    requirements:
+      host:
+        - pip
+        - python >=3.7.9
+        - poetry-core
+      run:
+        - python >=3.7.9
+        - lsprotocol ==2023.0.0b1
+        - typeguard >=3.0.0,<4.0.0
+    test:
+      source_files:
+        - tests
+      requires:
+        - m2-grep  # [win]
+        - pip
+      imports:
+        - pygls
+      commands:
+        - pip check
+        - pip list
+        - pip list | grep -iE 'pygls\s+{{ version.replace("\\", "\\\\") }}$'
 
-test:
-  source_files:
-    - tests
-  requires:
-    - m2-grep  # [win]
-    - mock
-    - pip
-    - pytest
-    - pytest-asyncio
-    - pytest-cov
-  imports:
-    - pygls
-  commands:
-    - pip check
-    - pip list
-    - pip list | grep -iE 'pygls\s+{{ version.replace("\\", "\\\\") }}$'
-    - pytest tests -vv --cov=pygls --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=82
+  - name: pygls-with-ws
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python >=3.7.9
+      run:
+        - {{ pin_subpackage("pygls", max_pin="x.x.x") }}
+        - python >=3.7.9
+        - websockets >=11.0.3,<12.0.0
+    test:
+      source_files:
+        - tests
+      requires:
+        - mock
+        - pip
+        - pytest
+        - pytest-asyncio
+        - pytest-cov
+      imports:
+        - pygls
+      commands:
+        - pip check
+        - pytest tests -vv --cov=pygls --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=82
 
 about:
   home: https://pygls.readthedocs.io
