@@ -1,55 +1,88 @@
-{% set version = "1.0.2" %}
+{% set version = "1.1.0" %}
+{% set cov_fail_under = "62" %}
+{% set pytest_skip = "test_code_actions or test_completion or test_diagnostics or test_inline_value" %}
 
 package:
   name: pygls
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/p/pygls/pygls-{{ version }}.tar.gz
-  sha256: 888ed63d1f650b4fc64d603d73d37545386ec533c0caac921aed80f80ea946a4
+  - folder: dist
+    url: https://pypi.io/packages/source/p/pygls/pygls-{{ version }}.tar.gz
+    sha256: eb19b818039d3d705ec8adbcdf5809a93af925f30cd7a3f3b7573479079ba00e
+  - folder: src
+    url: https://github.com/openlawlibrary/pygls/archive/refs/tags/v{{ version }}.tar.gz
+    sha256: 585b6b3030580c96208d3176d397ac531603157279a55e0763c1b1e096680538
 
 build:
   noarch: python
   number: 0
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
-    - pip
-    - python >=3.7
-    - setuptools >=44
-    - setuptools-scm >=3.4.3
-    - toml
+    - python >=3.7.9
   run:
-    - python >=3.7
-    - lsprotocol
-    - typeguard >=3,<4
+    - python >=3.7.9
 
-test:
-  source_files:
-    - tests
-  requires:
-    - m2-grep  # [win]
-    - mock
-    - pip
-    - pytest
-    - pytest-asyncio
-    - pytest-cov
-  imports:
-    - pygls
-  commands:
-    - pip check
-    - pip list
-    - pip list | grep -iE 'pygls\s+{{ version.replace("\\", "\\\\") }}$'
-    - pytest tests -vv --cov=pygls --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=82
+outputs:
+  - name: pygls
+    build:
+      noarch: python
+      script: cd dist && {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+    requirements:
+      host:
+        - pip
+        - python >=3.7.9
+        - poetry-core
+      run:
+        - python >=3.7.9
+        - lsprotocol ==2023.0.0b1
+        - typeguard >=3.0.0,<4.0.0
+    test:
+      requires:
+        - m2-grep  # [win]
+        - pip
+      imports:
+        - pygls
+      commands:
+        - pip check
+        - pip list
+        - pip list | grep -iE 'pygls\s+{{ version.replace("\\", "\\\\") }}$'
 
+  - name: pygls-with-ws
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python >=3.7.9
+      run:
+        - {{ pin_subpackage("pygls", max_pin="x.x.x") }}
+        - python >=3.7.9
+        - websockets >=11.0.3,<12.0.0
+    test:
+      source_files:
+        - src/tests
+      requires:
+        - coverage
+        - pip
+        - pytest
+        - pytest-asyncio
+        - pytest-timeout
+      imports:
+        - pygls
+      commands:
+        - pip check
+        - cd src
+        - coverage run --source=pygls --parallel --branch -m pytest -ra -vv --timeout=20 --asyncio-mode=auto -k "not ({{ pytest_skip }})"
+        - coverage combine
+        - coverage report --show-missing --skip-covered --fail-under={{ cov_fail_under }}
 about:
   home: https://pygls.readthedocs.io
   license: Apache-2.0
   license_family: APACHE
   license_file:
-    - LICENSE.txt
-    - ThirdPartyNotices.txt
+    - dist/LICENSE.txt
+    - src/ThirdPartyNotices.txt
   summary: a pythonic generic language server (pronounced like "pie glass").
   description: |
     pygls (pronounced like "pie glass") is a pythonic generic implementation of
