@@ -14,15 +14,15 @@ source:
     url: https://github.com/openlawlibrary/pygls/archive/refs/tags/v{{ version }}.tar.gz
     sha256: 585b6b3030580c96208d3176d397ac531603157279a55e0763c1b1e096680538
 
+build:
+  noarch: python
+  number: 0
+
 requirements:
   host:
     - python >=3.7.9
   run:
     - python >=3.7.9
-
-build:
-  noarch: python
-  number: 0
 
 outputs:
   - name: pygls
