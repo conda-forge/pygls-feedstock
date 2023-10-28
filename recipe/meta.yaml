@@ -37,7 +37,7 @@ outputs:
       run:
         - python >=3.7.9
         - lsprotocol ==2023.0.0b1
-        - typeguard >=3.0.0,<4.0.0
+        - typeguard >=3.0.0,<5
     test:
       requires:
         - m2-grep  # [win]
