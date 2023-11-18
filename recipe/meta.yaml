@@ -1,4 +1,4 @@
-{% set version = "1.1.2" %}
+{% set version = "1.2.0" %}
 {% set cov_fail_under = "67" %}
 {% set pytest_skip = "test_code_actions or test_completion or test_diagnostics or test_inline_value" %}
 
@@ -9,10 +9,10 @@ package:
 source:
   - folder: dist
     url: https://pypi.io/packages/source/p/pygls/pygls-{{ version }}.tar.gz
-    sha256: 93fe17c01fd03307774290e685e7fa25bc1411cd72f243ff33eef21927fd0ad5
+    sha256: 72ec4a3532741be1a933c686ed1e138b9948af174213745527a7c3ed3147a573
   - folder: src
     url: https://github.com/openlawlibrary/pygls/archive/refs/tags/v{{ version }}.tar.gz
-    sha256: 53d06205e71049c96abc89e2ff43f0493690bd48585f817980510d2ee3208df9
+    sha256: 8850591afb58a6a1e5e077676f6d3918c7773117409081be3cb97737768f951f
 
 build:
   noarch: python
