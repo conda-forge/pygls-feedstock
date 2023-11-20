@@ -72,7 +72,8 @@ outputs:
       commands:
         - pip check
         - cd src
-        - coverage run --source=pygls --parallel --branch -m pytest -ra -vv --timeout=20 --asyncio-mode=auto -k "not ({{ pytest_skip }})"
+        - pytest --color=yes --collect-only -k "not ({{ pytest_skip }})"
+        - coverage run --source=pygls --parallel --branch -m pytest -ra -vv --color=yes --timeout=20 --asyncio-mode=auto -k "not ({{ pytest_skip }})"
         - coverage combine
         - coverage report --show-missing --skip-covered --fail-under={{ cov_fail_under }}
 about:
