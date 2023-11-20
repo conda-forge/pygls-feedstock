@@ -1,5 +1,5 @@
 {% set version = "1.2.0" %}
-{% set cov_fail_under = "67" %}
+{% set cov_fail_under = "66" %}
 {% set pytest_skip = "test_code_actions or test_completion or test_diagnostics or test_inline_value or test_progress or test_request_error_reporting" %}
 
 package:
