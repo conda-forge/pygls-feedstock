@@ -66,7 +66,7 @@ outputs:
       requires:
         - coverage
         - pip
-        - pytest
+        - pytest <8
         - pytest-asyncio
         - pytest-timeout
       imports:
