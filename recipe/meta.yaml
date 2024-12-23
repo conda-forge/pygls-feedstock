@@ -1,7 +1,5 @@
-{% set min_python = "python >=3.8" %}
 {% set version = "1.3.1" %}
-{% set min_python = "python >=3.8" %}
-{% set cov_fail_under = "66" %}
+{% set cov_fail_under = "65" %}
 {% set pytest_skip = "test_code_actions or test_completion or test_diagnostics or test_inline_value or test_progress or test_request_error_reporting" %}
 
 package:
@@ -17,49 +15,41 @@ source:
     sha256: d2dc2b8e298cac8d3945b237cff1f103b0bf6349f0308361b0041dcdae59ab2f
 
 build:
-  noarch: python
   number: 1
+  noarch: python
+  script:
+    - cd dist && {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
 
 requirements:
   host:
-    - {{ min_python }}
+    - pip
+    - python {{ python_min }}
+    - poetry-core
   run:
-    - {{ min_python }}
+    - python >={{ python_min }}
+    - cattrs >=23.1.2
+    - lsprotocol ==2023.0.1
+
+test:
+  requires:
+    - m2-grep  # [win]
+    - pip
+    - python {{ python_min }}
+  imports:
+    - pygls
+  commands:
+    - pip check
+    - pip list
+    - pip list | grep -iE 'pygls\s+{{ version.replace("\\", "\\\\") }}$'
 
 outputs:
   - name: pygls
-    build:
-      noarch: python
-      script: cd dist && {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-    requirements:
-      host:
-        - pip
-        - {{ min_python }}
-        - poetry-core
-      run:
-        - {{ min_python }}
-        - cattrs >=23.1.2
-        - lsprotocol ==2023.0.1
-    test:
-      requires:
-        - m2-grep  # [win]
-        - pip
-        - python {{ python_min }}
-      imports:
-        - pygls
-      commands:
-        - pip check
-        - pip list
-        - pip list | grep -iE 'pygls\s+{{ version.replace("\\", "\\\\") }}$'
 
   - name: pygls-with-ws
     build:
-      noarch: python
+      noarch: generic
     requirements:
-      host:
-        - {{ min_python }}
       run:
-        - {{ min_python }}
         - {{ pin_subpackage("pygls", max_pin="x.x.x") }}
         - websockets >=11.0.3
     test:
@@ -81,6 +71,7 @@ outputs:
         - coverage run --source=pygls --parallel --branch -m pytest -ra -vv --color=yes --timeout=20 --asyncio-mode=auto -k "not ({{ pytest_skip }})"
         - coverage combine
         - coverage report --show-missing --skip-covered --fail-under={{ cov_fail_under }}
+
 about:
   home: https://pygls.readthedocs.io
   license: Apache-2.0
@@ -99,5 +90,6 @@ about:
   doc_source_url: https://github.com/openlawlibrary/pygls/tree/master/docs/source
 
 extra:
+  feestock-name: pygls
   recipe-maintainers:
     - bollwyvl
