@@ -90,6 +90,6 @@ about:
   doc_source_url: https://github.com/openlawlibrary/pygls/tree/master/docs/source
 
 extra:
-  feestock-name: pygls
+  feedstock-name: pygls
   recipe-maintainers:
     - bollwyvl
