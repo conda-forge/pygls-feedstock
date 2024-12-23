@@ -10,7 +10,7 @@ package:
 
 source:
   - folder: dist
-    url: https://pypi.io/packages/source/p/pygls/pygls-{{ version }}.tar.gz
+    url: https://pypi.org/packages/source/p/pygls/pygls-{{ version }}.tar.gz
     sha256: 140edceefa0da0e9b3c533547c892a42a7d2fd9217ae848c330c53d266a55018
   - folder: src
     url: https://github.com/openlawlibrary/pygls/archive/refs/tags/v{{ version }}.tar.gz
@@ -18,7 +18,7 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
 
 requirements:
   host:
@@ -44,6 +44,7 @@ outputs:
       requires:
         - m2-grep  # [win]
         - pip
+        - python {{ python_min }}
       imports:
         - pygls
       commands:
@@ -70,6 +71,7 @@ outputs:
         - pytest <8
         - pytest-asyncio
         - pytest-timeout
+        - python {{ python_min }}
       imports:
         - pygls
       commands:
