@@ -4,13 +4,7 @@ schema_version: 1
 context:
   version: "2.0.0a2"
   cov_fail_under: "65"
-  pytest_skip: |
-    test_code_actions 
-    or test_completion 
-    or test_diagnostics 
-    or test_inline_value 
-    or test_progress 
-    or test_request_error_reporting
+  pytest_skip: test_code_actions or test_completion or test_diagnostics or test_inline_value or test_progress or test_request_error_reporting
 
 recipe:
   name: pygls
@@ -39,7 +33,7 @@ outputs:
     requirements:
       host:
         - pip
-        - python ${{ python_min }}
+        - python ${{ python_min }}.*
         - poetry-core
       run:
         - python >=${{ python_min }}
@@ -62,8 +56,11 @@ outputs:
         - websockets >=13
     tests:
       - python:
-          imports:
-            - pygls
+          imports: pygls
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - 3.13.*
       - files:
           source:
             - src/tests
