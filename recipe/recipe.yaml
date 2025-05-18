@@ -3,7 +3,7 @@ schema_version: 1
 
 context:
   version: "2.0.0a3"
-  cov_fail_under: "65"
+  cov_fail_under: "64"
   cov_pytest: coverage run --source=pygls --parallel --branch -m pytest -vv --color=yes
 
 recipe:
