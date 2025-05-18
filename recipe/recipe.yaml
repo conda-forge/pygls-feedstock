@@ -15,7 +15,7 @@ source:
     sha256: 03e00634ed8d989918268aaa4b4a0c3ab857ea2d4ee94514a52efa5ddd6d5d9f
     target_directory: dist
   - url: https://github.com/openlawlibrary/pygls/archive/refs/tags/v${{ version }}.tar.gz
-    sha256: d2dc2b8e298cac8d3945b237cff1f103b0bf6349f0308361b0041dcdae59ab2f
+    sha256: 6543cca4d6f80392a04f1e5ac60e6618ee65ac6f37a890a3094031e8156a341a
     target_directory: src
 
 build:
