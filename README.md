@@ -3,7 +3,7 @@ About pygls-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pygls-feedstock/blob/main/LICENSE.txt)
 
-Home: https://pygls.readthedocs.io
+Home: https://pygls.readthedocs.io/
 
 Package license: Apache-2.0
 
@@ -11,13 +11,12 @@ Summary: a pythonic generic language server (pronounced like "pie glass").
 
 Development: https://github.com/openlawlibrary/pygls
 
-Documentation: https://pygls.readthedocs.io
+Documentation: https://pygls.readthedocs.io/
 
 pygls (pronounced like "pie glass") is a pythonic generic implementation of
 the Language Server Protocol for use as a foundation for writing language
 servers using Python (e.g. Python, XML, etc.). It allows you to write your
 own language server in just a few lines of code.
-
 
 Current build status
 ====================
@@ -43,14 +42,14 @@ Current release info
 Installing pygls
 ================
 
-Installing `pygls` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `pygls` from the `conda-forge/label/pygls_alpha` channel can be achieved by adding `conda-forge/label/pygls_alpha` to your channels with:
 
 ```
-conda config --add channels conda-forge
+conda config --add channels conda-forge/label/pygls_alpha
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `pygls, pygls-with-ws` can be installed with `conda`:
+Once the `conda-forge/label/pygls_alpha` channel has been enabled, `pygls, pygls-with-ws` can be installed with `conda`:
 
 ```
 conda install pygls pygls-with-ws
@@ -65,26 +64,26 @@ mamba install pygls pygls-with-ws
 It is possible to list all of the versions of `pygls` available on your platform with `conda`:
 
 ```
-conda search pygls --channel conda-forge
+conda search pygls --channel conda-forge/label/pygls_alpha
 ```
 
 or with `mamba`:
 
 ```
-mamba search pygls --channel conda-forge
+mamba search pygls --channel conda-forge/label/pygls_alpha
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search pygls --channel conda-forge
+mamba repoquery search pygls --channel conda-forge/label/pygls_alpha
 
 # List packages depending on `pygls`:
-mamba repoquery whoneeds pygls --channel conda-forge
+mamba repoquery whoneeds pygls --channel conda-forge/label/pygls_alpha
 
 # List dependencies of `pygls`:
-mamba repoquery depends pygls --channel conda-forge
+mamba repoquery depends pygls --channel conda-forge/label/pygls_alpha
 ```
 
 
