@@ -1,4 +1,4 @@
 channel_targets:
   - conda-forge pygls_alpha
 channel_sources:
-  - conda-forge/label/lsprotocol_core_beta,conda-forge
+  - conda-forge/label/lsprotocol_beta,conda-forge
