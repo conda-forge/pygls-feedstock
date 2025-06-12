@@ -1,7 +1,7 @@
 cdt_name:
 - conda
 channel_sources:
-- conda-forge/label/lsprotocol_beta,conda-forge
+- conda-forge/label/lsprotocol_rc,conda-forge
 channel_targets:
 - conda-forge pygls_alpha
 docker_image:
