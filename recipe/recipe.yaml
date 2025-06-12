@@ -38,7 +38,7 @@ outputs:
       run:
         - python >=${{ python_min }}
         - cattrs >=23.1.2
-        - lsprotocol ==2024.0.0b1
+        - lsprotocol ==2025.0.0rc1
       run_constraints:
         - websockets >=13
     tests:
