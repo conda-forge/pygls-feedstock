@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "2.0.0a5"
+  version: "2.0.0a6"
   cov_fail_under: "64"
   cov_pytest: coverage run --source=pygls --parallel --branch -m pytest -vv --color=yes
 
@@ -12,10 +12,10 @@ recipe:
 
 source:
   - url: https://pypi.org/packages/source/p/pygls/pygls-${{ version }}.tar.gz
-    sha256: da24333063dbb4545e38e650cad32989d52f99442404eaff12702b45cbea0738
+    sha256: 1a94e0252e4bab607690e7dadbe949e1132a1e878325f5ad60c4936506188e49
     target_directory: dist
   - url: https://github.com/openlawlibrary/pygls/archive/refs/tags/v${{ version }}.tar.gz
-    sha256: 9e087b0ca3dcb9a1b33ee29b9d2ee2f2009ab28822a18a922d0334c4672fed0f
+    sha256: 073ebcbbe9acd7899e624b55921775c38905efa4e37e23a06efc0b1bcefa5498
     target_directory: src
 
 build:
