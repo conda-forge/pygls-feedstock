@@ -3,8 +3,8 @@ schema_version: 1
 
 context:
   version: "2.0.0"
-  cov_fail_under: "64"
-  cov_pytest: coverage run --source=pygls --parallel --append --branch -m pytest -vv --color=yes --tb=long
+  cov_fail_under: "66"
+  cov_pytest: coverage run --source=pygls --parallel --branch -m pytest -vv --color=yes --tb=long
   python_check_max: "3.14"
 
 recipe:
