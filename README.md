@@ -3,7 +3,7 @@ About pygls-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pygls-feedstock/blob/main/LICENSE.txt)
 
-Home: https://pygls.readthedocs.io
+Home: https://pygls.readthedocs.io/
 
 Package license: Apache-2.0
 
@@ -11,13 +11,12 @@ Summary: a pythonic generic language server (pronounced like "pie glass").
 
 Development: https://github.com/openlawlibrary/pygls
 
-Documentation: https://pygls.readthedocs.io
+Documentation: https://pygls.readthedocs.io/
 
 pygls (pronounced like "pie glass") is a pythonic generic implementation of
 the Language Server Protocol for use as a foundation for writing language
 servers using Python (e.g. Python, XML, etc.). It allows you to write your
 own language server in just a few lines of code.
-
 
 Current build status
 ====================
@@ -109,12 +108,12 @@ it is possible to build and upload installable packages to the
 [conda-forge](https://anaconda.org/conda-forge) [anaconda.org](https://anaconda.org/)
 channel for Linux, Windows and OSX respectively.
 
-To manage the continuous integration and simplify feedstock maintenance
+To manage the continuous integration and simplify feedstock maintenance,
 [conda-smithy](https://github.com/conda-forge/conda-smithy) has been developed.
 Using the ``conda-forge.yml`` within this repository, it is possible to re-render all of
 this feedstock's supporting files (e.g. the CI configuration files) with ``conda smithy rerender``.
 
-For more information please check the [conda-forge documentation](https://conda-forge.org/docs/).
+For more information, please check the [conda-forge documentation](https://conda-forge.org/docs/).
 
 Terminology
 ===========
@@ -141,7 +140,7 @@ merged, the recipe will be re-built and uploaded automatically to the
 everybody to install and use from the `conda-forge` channel.
 Note that all branches in the conda-forge/pygls-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
-on branches in forks and branches in the main repository should only be used to
+on branches in forks, and branches in the main repository should only be used to
 build distinct package versions.
 
 In order to produce a uniquely identifiable distribution:
