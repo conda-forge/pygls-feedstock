@@ -3,7 +3,7 @@ About pygls-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pygls-feedstock/blob/main/LICENSE.txt)
 
-Home: https://pygls.readthedocs.io
+Home: https://pygls.readthedocs.io/
 
 Package license: Apache-2.0
 
@@ -11,13 +11,12 @@ Summary: a pythonic generic language server (pronounced like "pie glass").
 
 Development: https://github.com/openlawlibrary/pygls
 
-Documentation: https://pygls.readthedocs.io
+Documentation: https://pygls.readthedocs.io/
 
 pygls (pronounced like "pie glass") is a pythonic generic implementation of
 the Language Server Protocol for use as a foundation for writing language
 servers using Python (e.g. Python, XML, etc.). It allows you to write your
 own language server in just a few lines of code.
-
 
 Current build status
 ====================
