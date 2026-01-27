@@ -38,9 +38,9 @@ outputs:
         - poetry-core
       run:
         - attrs >=24.3.0
-        - python >=${{ python_min }}
         - cattrs >=23.1.2
         - lsprotocol ==2025.0.0
+        - python >=${{ python_min }}
       run_constraints:
         - websockets >=13.0
     tests:
@@ -91,7 +91,7 @@ about:
     - dist/LICENSE.txt
     - src/ThirdPartyNotices.txt
   summary: a pythonic generic language server (pronounced like "pie glass").
-  homepage: https://pygls.readthedocs.io
+  homepage: https://pypi.org/project/pygls
   repository: https://github.com/openlawlibrary/pygls
   documentation: https://pygls.readthedocs.io
   description: |
