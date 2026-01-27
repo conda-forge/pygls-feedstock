@@ -3,7 +3,7 @@ About pygls-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pygls-feedstock/blob/main/LICENSE.txt)
 
-Home: https://pygls.readthedocs.io/
+Home: https://pypi.org/project/pygls
 
 Package license: Apache-2.0
 
